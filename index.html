@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EsToDoList</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #tema:checked ~ .pagina {
+            background-color: #111827;
+            color: white;
+        }
+
+        #tema:checked ~ .pagina header,
+        #tema:checked ~ .pagina section,
+        #tema:checked ~ .pagina .cartao {
+            background-color: #1f2937;
+            color: white;
+        }
+
+        #tema:checked ~ .pagina input,
+        #tema:checked ~ .pagina textarea,
+        #tema:checked ~ .pagina select {
+            background-color: #374151;
+            color: white;
+            border-color: #6b7280;
+        }
+
+        #tema:checked ~ .pagina .texto-secundario {
+            color: #d1d5db;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gray-100">
+
+    <input type="checkbox" id="tema" class="peer sr-only">
+
+    <div class="pagina min-h-screen bg-gray-100 text-gray-900">
+
+        <header class="flex items-center justify-between bg-white px-4 py-5 shadow md:px-8">
+
+            <div>
+                <h1 class="text-2xl font-bold">EsToDoList</h1>
+                <p class="texto-secundario hidden text-sm text-gray-500 md:block">
+                    Organize seus estudos!
+                </p>
+            </div>
+
+            <label for="tema"
+                class="cursor-pointer rounded-lg border border-gray-300 px-4 py-2">
+                🌙 / ☀️
+            </label>
+
+        </header>
+
+        <main class="mx-auto grid max-w-7xl grid-cols-1 gap-6 p-4 md:grid-cols-2 md:p-8 lg:grid-cols-4">
+
+            <!-- FORMULÁRIO -->
+
+            <section class="rounded-xl bg-white p-5 shadow md:p-6 lg:col-span-1 lg:sticky lg:top-6 lg:self-start">
+
+                <h2 class="mb-5 text-xl font-bold">Nova atividade</h2>
+
+                <form class="flex flex-col gap-1">
+
+                    <label for="nome" class="mb-1 block font-medium">
+                        Nome da atividade
+                    </label>
+
+                    <input type="text" id="nome"
+                        placeholder="Ex.: Estudar matemática"
+                        class="mb-4 w-full rounded-lg border border-gray-300 p-3"
+                        required>
+
+                    <label for="descricao" class="mb-1 block font-medium">
+                        Descrição
+                    </label>
+
+                    <textarea id="descricao"
+                        placeholder="Descreva sua atividade"
+                        rows="3"
+                        class="mb-4 w-full rounded-lg border border-gray-300 p-3"></textarea>
+
+                    <label for="categoria" class="mb-1 block font-medium">
+                        Categoria
+                    </label>
+
+                    <select id="categoria"
+                        class="mb-4 w-full rounded-lg border border-gray-300 p-3">
+
+                        <option>Estudos</option>
+                        <option>Trabalho</option>
+                        <option>Pessoal</option>
+
+                    </select>
+
+                    <label for="data" class="mb-1 block font-medium">
+                        Data de entrega
+                    </label>
+
+                    <input type="date" id="data"
+                        class="mb-4 w-full rounded-lg border border-gray-300 p-3">
+
+                    <label for="prioridade" class="mb-1 block font-medium">
+                        Prioridade
+                    </label>
+
+                    <select id="prioridade"
+                        class="mb-4 w-full rounded-lg border border-gray-300 p-3">
+
+                        <option>Baixa</option>
+                        <option selected>Média</option>
+                        <option>Alta</option>
+
+                    </select>
+
+                    <button type="button"
+                        class="w-full rounded-lg bg-gray-600 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-700 p-3 font-bold text-white">
+                        Adicionar atividade
+                    </button>
+
+                </form>
+
+            </section>
+
+            <!-- LISTA DE ATIVIDADES -->
+
+            <section class="rounded-xl bg-white p-5 shadow md:p-6 lg:col-span-3">
+
+                <h2 class="mb-5 text-xl font-bold">Minhas atividades</h2>
+
+                <!-- PESQUISA E FILTRO -->
+
+                <div class="mb-5 flex flex-col gap-3 md:flex-row">
+
+                    <input type="text"
+                        placeholder="Pesquisar atividade..."
+                        class="min-w-0 flex-1 rounded-lg border border-gray-300 p-3">
+
+                    <select class="w-full rounded-lg border border-gray-300 p-3 md:w-auto">
+
+                        <option>Todas as atividades</option>
+                        <option>Pendentes</option>
+                        <option>Concluídas</option>
+
+                    </select>
+
+                </div>
+
+                <!-- TAREFAS -->
+
+                <div class="flex flex-col gap-4">
+
+                    <!-- TAREFA 1 -->
+
+                    <article class="cartao rounded-xl border border-gray-200 p-4">
+
+                        <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+
+                            <div class="min-w-0 flex-1">
+
+                                <div class="mb-2 flex flex-wrap items-center gap-2">
+
+                                    <span class="rounded-full bg-yellow-100 px-3 py-1 text-xs font-bold text-yellow-800">
+                                        Estudos
+                                    </span>
+
+                                    <span class="rounded-full bg-red-100 px-3 py-1 text-xs font-bold text-red-700">
+                                        Alta prioridade
+                                    </span>
+
+                                </div>
+
+                                <h3 class="text-lg font-bold">
+                                    Estudar matemática
+                                </h3>
+
+                                <p class="texto-secundario mt-1 text-sm text-gray-500">
+                                    Revisar funções do primeiro e segundo grau para a prova.
+                                </p>
+
+                                <p class="texto-secundario mt-3 text-sm text-gray-500">
+                                    📅 Entrega: 05/11/2026
+                                </p>
+
+                                <p class="mt-2 text-sm font-medium text-orange-600">
+                                    ● Pendente
+                                </p>
+
+                            </div>
+
+                            <div class="flex gap-2 sm:flex-col">
+
+                                <button type="button"
+                                    class="flex-1 rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white">
+                                    ✏️ Editar
+                                </button>
+
+                                <button type="button"
+                                    class="flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm font-bold text-white">
+                                    🗑️ Excluir
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <!-- TAREFA 2 -->
+
+                    <article class="cartao rounded-xl border border-gray-200 p-4">
+
+                        <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+
+                            <div class="min-w-0 flex-1">
+
+                                <div class="mb-2 flex flex-wrap items-center gap-2">
+
+                                    <span class="rounded-full bg-purple-100 px-3 py-1 text-xs font-bold text-purple-800">
+                                        Estudos
+                                    </span>
+
+                                    <span class="rounded-full bg-yellow-100 px-3 py-1 text-xs font-bold text-yellow-800">
+                                        Média prioridade
+                                    </span>
+
+                                </div>
+
+                                <h3 class="text-lg font-bold">
+                                    Finalizar projeto HTML e CSS
+                                </h3>
+
+                                <p class="texto-secundario mt-1 text-sm text-gray-500">
+                                    Ajustar o layout, revisar o código e conferir a versão para celular.
+                                </p>
+
+                                <p class="texto-secundario mt-3 text-sm text-gray-500">
+                                    📅 Entrega: 07/11/2026
+                                </p>
+
+                                <p class="mt-2 text-sm font-medium text-orange-600">
+                                    ● Pendente
+                                </p>
+
+                            </div>
+
+                            <div class="flex gap-2 sm:flex-col">
+
+                                <button type="button"
+                                    class="flex-1 rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white">
+                                    ✏️ Editar
+                                </button>
+
+                                <button type="button"
+                                    class="flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm font-bold text-white">
+                                    🗑️ Excluir
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <!-- TAREFA 3 -->
+
+                    <article class="cartao rounded-xl border border-gray-200 p-4">
+
+                        <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+
+                            <div class="min-w-0 flex-1">
+
+                                <div class="mb-2 flex flex-wrap items-center gap-2">
+
+                                    <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-800">
+                                        Pessoal
+                                    </span>
+
+                                    <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-800">
+                                        Baixa prioridade
+                                    </span>
+
+                                </div>
+
+                                <h3 class="text-lg font-bold">
+                                    Organizar a semana
+                                </h3>
+
+                                <p class="texto-secundario mt-1 text-sm text-gray-500">
+                                    Separar os horários de estudo, descanso e outras atividades.
+                                </p>
+
+                                <p class="texto-secundario mt-3 text-sm text-gray-500">
+                                    📅 Entrega: 08/11/2026
+                                </p>
+
+                                <p class="mt-2 text-sm font-medium text-green-600">
+                                    ✔ Concluída
+                                </p>
+
+                            </div>
+
+                            <div class="flex gap-2 sm:flex-col">
+
+                                <button type="button"
+                                    class="flex-1 rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white">
+                                    ✏️ Editar
+                                </button>
+
+                                <button type="button"
+                                    class="flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm font-bold text-white">
+                                    🗑️ Excluir
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
